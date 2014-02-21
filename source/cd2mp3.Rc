@@ -1,0 +1,354 @@
+
+/* OS/2 Warp 4.0 Resource Script File - Created by Universal Resource Editor */
+
+#define INCL_WINSYS
+#define INCL_WINBIDI
+#define INCL_WINSTDDLGS
+#define INCL_WINSTDSPIN
+#define INCL_NLS
+#define INCL_SW
+
+#include <os2.h>
+
+#include "cd2mp3.h"
+
+ICON        ICO_QMARK                          "qmark.ico"
+ICON        ICO_TRACK                          "track.ico"
+ICON        ICO_WAV                            "wav.ico"
+ICON        ICO_DATA                           "data.ico"
+ICON        ICO_PLAY                           "play.ico"
+ICON        ICO_STOP                           "stop.ico"
+MENU PUM_WAVRECORD MOVEABLE DISCARDABLE
+BEGIN
+    MENUITEM "~Delete\tDelete",        IDM_DELETE, MIS_TEXT
+END
+
+MENU PUM_WAVCONTAINER MOVEABLE DISCARDABLE
+BEGIN
+    MENUITEM "~Add...\tInsert",        IDM_ADD, MIS_TEXT
+    MENUITEM "~Mini icons",            IDM_MINIICONS, MIS_TEXT
+
+    SUBMENU "~View",                   IDM_VIEW, MIS_TEXT
+    BEGIN
+        MENUITEM "~Icon view",         IDM_ICONVIEW, MIS_TEXT
+        MENUITEM "~Name view",         IDM_NAMEVIEW, MIS_TEXT
+        MENUITEM "~Detail view",       IDM_DETAILVIEW, MIS_TEXT
+        MENUITEM SEPARATOR
+        MENUITEM "Select ~all\tCtrl+/", IDM_SELECTALL, MIS_TEXT
+        MENUITEM "Dese~lect all\tCtrl+\\", IDM_DESELECTALL, MIS_TEXT
+    END
+END
+
+MENU PUM_CDRECORD MOVEABLE DISCARDABLE
+BEGIN
+    MENUITEM "~Play",                  IDM_PLAY, MIS_TEXT
+    MENUITEM "~Stop",                  IDM_STOP, MIS_TEXT
+END
+
+MENU PUM_CDCONTAINER MOVEABLE DISCARDABLE
+BEGIN
+    MENUITEM "~Refresh",               IDM_REFRESH, MIS_TEXT
+    MENUITEM "~Mini icons",            IDM_MINIICONS, MIS_TEXT
+
+    SUBMENU "~View",                   IDM_VIEW, MIS_TEXT
+    BEGIN
+        MENUITEM "~Icon view",         IDM_ICONVIEW, MIS_TEXT
+        MENUITEM "~Name view",         IDM_NAMEVIEW, MIS_TEXT
+        MENUITEM "~Detail view",       IDM_DETAILVIEW, MIS_TEXT
+        MENUITEM SEPARATOR
+        MENUITEM "Select ~all\tCtrl+/", IDM_SELECTALL, MIS_TEXT
+        MENUITEM "Dese~lect all\tCtrl+\\", IDM_DESELECTALL, MIS_TEXT
+    END
+END
+
+DLGTEMPLATE DLG_CD MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "CD", DLG_CD, 56, 37, 333, 181, FS_NOBYTEALIGN | NOT FS_DLGBORDER |
+                WS_CLIPSIBLINGS | WS_SAVEBITS | WS_VISIBLE
+    PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "",                    CT_TRACK, 12, 65, 310, 100, WC_CONTAINER,
+                                            CCS_EXTENDSEL | CCS_AUTOPOSITION |
+                                            CCS_MINIICONS | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "CD ~artist",          ST_ARTIST, 9, 50, 30, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_GROUP | WS_VISIBLE
+        CONTROL "",                    EF_ARTIST, 52, 51, 93, 8, WC_ENTRYFIELD,
+                                            ES_AUTOSCROLL | ES_MARGIN | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "CD t~itle",           ST_TITLE, 154, 50, 27, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    EF_TITLE, 198, 51, 111, 8, WC_ENTRYFIELD,
+                                            ES_AUTOSCROLL | ES_MARGIN | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "CD c~omment",         ST_COMMENTS, 9, 36, 39, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    EF_COMMENTS, 52, 37, 93, 8,
+                                            WC_ENTRYFIELD, ES_AUTOSCROLL |
+                                            ES_MARGIN | ES_ANY | WS_TABSTOP |
+                                            WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "CD categor~y",        ST_CATEGORY, 153, 36, 42, 9, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    EF_GENRE, 198, 37, 111, 8, WC_ENTRYFIELD,
+                                            ES_AUTOSCROLL | ES_MARGIN | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 8, 32, 0, 0
+        CONTROL "#1004",               PB_CDPLAY, 10, 18, 20, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | BS_ICON |
+                                            BS_MINIICON | WS_GROUP | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "#1005",               PB_CDSTOP, 34, 18, 20, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | BS_ICON |
+                                            BS_MINIICON | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "#1006\011~Refresh",   PB_REFRESH, 60, 7, 39, 23, WC_BUTTON,
+                                            BS_PUSHBUTTON | BS_ICON |
+                                            BS_MINIICON | BS_TEXT | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "Use CDD~B",           CB_USECDDB, 106, 20, 45, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "~Super grab",         CB_SUPERGRAB, 11, 5, 45, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "~Drive:",             ST_DRIVE, 155, 20, 20, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_GROUP | WS_VISIBLE
+        CONTROL "",                    CB_DRIVE, 179, -9, 25, 38, WC_COMBOBOX,
+                                            CBS_DROPDOWN | ES_ANY | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "~Grabber:",           ST_GRABBER, 212, 20, 26, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    CB_GRABBER, 244, -8, 65, 37, WC_COMBOBOX,
+                                            CBS_DROPDOWNLIST | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "~Temp Dir:",          ST_TEMPDIR, 105, 6, 30, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    EF_TEMPDIR, 141, 6, 61, 8, WC_ENTRYFIELD,
+                                            ES_AUTOSCROLL | ES_MARGIN | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "~Custom:",            ST_CUSTOMCD, 212, 7, 27, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    EF_CUSTOMCD, 245, 6, 63, 8,
+                                            WC_ENTRYFIELD, ES_AUTOSCROLL |
+                                            ES_MARGIN | ES_ANY | WS_TABSTOP |
+                                            WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+    END
+END
+
+DLGTEMPLATE DLG_MP3 MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "MP3", DLG_MP3, 14, 50, 285, 149, FS_NOBYTEALIGN | NOT FS_DLGBORDER |
+                WS_CLIPSIBLINGS | WS_SAVEBITS | WS_VISIBLE
+    PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "~Encoder:",           ST_ENCODER, 13, 123, 27, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_GROUP | WS_VISIBLE
+        CONTROL "",                    CB_ENCODER, 13, 62, 63, 59, WC_COMBOBOX,
+                                            CBS_DROPDOWNLIST | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "~Bitrate (kb/s):",    ST_BITRATE, 89, 123, 47, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    CB_BITRATE, 89, 62, 58, 59, WC_COMBOBOX,
+                                            CBS_DROPDOWN | ES_ANY | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "~Low priority",       CB_LOWPRIO, 13, 94, 48, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_GROUP |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "~High quality",       CB_HQ, 89, 94, 52, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "~MP3 directory:",     ST_MP3DIR, 13, 79, 49, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_GROUP | WS_VISIBLE
+        CONTROL "",                    EF_MP3DIR, 14, 66, 130, 8, WC_ENTRYFIELD,
+                                            ES_AUTOSCROLL | ES_MARGIN | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "~Custom:",            ST_CUSTOMMP3, 13, 50, 29, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_GROUP | WS_VISIBLE
+        CONTROL "",                    EF_CUSTOMMP3, 14, 37, 130, 8,
+                                            WC_ENTRYFIELD, ES_AUTOSCROLL |
+                                            ES_MARGIN | ES_ANY | WS_TABSTOP |
+                                            WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "~Deselect tracks and remove WAV files from list after encoding",
+                                       CB_REMOVE, 13, 18, 215, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+    END
+END
+
+DLGTEMPLATE DLG_WAV MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "WAV", DLG_WAV, 16, 51, 311, 137, FS_NOBYTEALIGN | NOT FS_DLGBORDER |
+                WS_CLIPSIBLINGS | WS_SAVEBITS | WS_VISIBLE
+    PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "",                    CT_WAV, 8, 5, 299, 117, WC_CONTAINER,
+                                            CCS_EXTENDSEL | CCS_AUTOPOSITION |
+                                            CCS_MINIICONS | WS_TABSTOP |
+                                            WS_VISIBLE
+    END
+END
+
+DLGTEMPLATE DLG_ABOUT MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "About", DLG_ABOUT, 50, 28, 200, 159, FS_NOBYTEALIGN | NOT
+                FS_DLGBORDER | WS_CLIPSIBLINGS | WS_SAVEBITS | WS_VISIBLE
+    PRESPARAMS PP_BACKGROUNDCOLORINDEX, CLR_BACKGROUND
+    PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "CD2MP3 PM",           ST_CD2MP3, 13, 131, 131, 20, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            WS_GROUP | WS_VISIBLE
+                PRESPARAMS PP_FOREGROUNDCOLORINDEX, CLR_BLUE
+                PRESPARAMS PP_FONTNAMESIZE, "24.Helv"
+        CONTROL "1.14",                ST_VERSION, 13, 124, 20, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            WS_GROUP | WS_VISIBLE
+                PRESPARAMS PP_FOREGROUNDCOLORINDEX, CLR_RED
+                PRESPARAMS PP_SHADOWTEXTCOLORINDEX, CLR_PALEGRAY
+                PRESPARAMS PP_FONTNAMESIZE, "10.Helv Bold Italic"
+        CONTROL ICO_MAIN,              ICO_MAIN, 155, 134, 21, 16, WC_STATIC,
+                                            SS_ICON | WS_GROUP | WS_VISIBLE
+        CONTROL "(C) 1998-2001",       ST_C, 11, 104, 53, 8, WC_STATIC, SS_TEXT |
+                                            DT_LEFT | DT_TOP | WS_GROUP |
+                                            WS_VISIBLE
+                PRESPARAMS PP_FOREGROUNDCOLORINDEX, CLR_DARKGREEN
+        CONTROL "Samuel Audet <guardia@cam.org>", EF_EMAIL, 68, 104, 125, 8,
+                                            WC_ENTRYFIELD, ES_MARGIN |
+                                            ES_READONLY | ES_ANY | WS_TABSTOP |
+                                            WS_VISIBLE
+                CTLDATA 8, 32, 0, 0
+        CONTROL "If you like this program, send me a sign of life, some cash, or register your copy of PM123!\012\012In its current state, this program CANNOT be used in a commercial or profiteable way. Please contact me for information.",
+                                       ST_ABOUT, 11, 43, 178, 49, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_WORDBREAK | WS_GROUP |
+                                            WS_VISIBLE
+    END
+END
+ICON        ICO_MAIN                           "CDTOMP.ICO"
+DLGTEMPLATE DLG_CDDB MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "CDDB", DLG_CDDB, 78, 42, 317, 160, FS_NOBYTEALIGN | NOT
+                FS_DLGBORDER | WS_CLIPSIBLINGS | WS_SAVEBITS | WS_VISIBLE
+    PRESPARAMS PP_FONTNAMESIZE, "9.WarpSans"
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "~CDDB servers",       ST_CDDBSERVERS, 5, 145, 63, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_GROUP | WS_VISIBLE
+        CONTROL "",                    LB_CDDBSERVERS, 5, 89, 137, 53,
+                                            WC_LISTBOX, LS_NOADJUSTPOS |
+                                            LS_MULTIPLESEL | WS_VISIBLE
+        CONTROL "~Add",                PB_ADD1, 9, 72, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "~Delete",             PB_DELETE1, 96, 72, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "CDDB servers through ~HTTP", ST_HTTPCDDBSERVERS,
+                                        155, 145, 99, 8, WC_STATIC, SS_TEXT |
+                                            DT_LEFT | DT_TOP | DT_MNEMONIC |
+                                            WS_GROUP | WS_VISIBLE
+        CONTROL "",                    LB_HTTPCDDBSERVERS, 152, 89, 138, 53,
+                                            WC_LISTBOX, LS_NOADJUSTPOS |
+                                            LS_MULTIPLESEL | WS_VISIBLE
+        CONTROL "A~dd",                PB_ADD2, 157, 72, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "D~elete",             PB_DELETE2, 252, 72, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "~Update",             PB_UPDATE, 9, 55, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_GROUP |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "~New server",         ST_NEWSERVER, 98, 58, 38, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    EF_NEWSERVER, 160, 59, 127, 8,
+                                            WC_ENTRYFIELD, ES_AUTOSCROLL |
+                                            ES_MARGIN | ES_ANY | WS_TABSTOP |
+                                            WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "Use HTTP (~slower)",  CB_USEHTTP, 11, 41, 71, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "~Proxy URL",          ST_PROXY, 98, 43, 39, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    EF_PROXY, 160, 44, 127, 8, WC_ENTRYFIELD,
+                                            ES_AUTOSCROLL | ES_MARGIN | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "~Try all servers",    CB_TRYALL, 11, 27, 70, 10, WC_BUTTON,
+                                            BS_AUTOCHECKBOX | WS_TABSTOP |
+                                            WS_VISIBLE
+        CONTROL "E-mail (server ~ID)", ST_EMAIL, 98, 28, 56, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+                PRESPARAMS PP_FOREGROUNDCOLORINDEX, CLR_RED
+        CONTROL "",                    EF_EMAIL, 160, 29, 127, 8, WC_ENTRYFIELD,
+                                            ES_AUTOSCROLL | ES_MARGIN | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "Filename ~format",    ST_FORMAT, 11, 11, 51, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_GROUP | WS_VISIBLE
+        CONTROL "",                    EF_FORMAT, 65, 12, 79, 8, WC_ENTRYFIELD,
+                                            ES_AUTOSCROLL | ES_MARGIN | ES_ANY |
+                                            WS_TABSTOP | WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+        CONTROL "Fa~llback FF",        ST_FALLBACKFF, 158, 11, 39, 8, WC_STATIC,
+                                            SS_TEXT | DT_LEFT | DT_TOP |
+                                            DT_MNEMONIC | WS_VISIBLE
+        CONTROL "",                    EF_FALLBACKFF, 204, 12, 84, 8,
+                                            WC_ENTRYFIELD, ES_AUTOSCROLL |
+                                            ES_MARGIN | ES_ANY | WS_TABSTOP |
+                                            WS_VISIBLE
+                CTLDATA 8, 256, 0, 0
+    END
+END
+
+DLGTEMPLATE DLG_MATCH MOVEABLE DISCARDABLE
+BEGIN
+    DIALOG "Fuzzy Match!!", DLG_MATCH, 58, 56, 199, 119, FS_NOBYTEALIGN |
+                FS_DLGBORDER | WS_CLIPSIBLINGS | WS_SAVEBITS | WS_VISIBLE,
+                FCF_TITLEBAR | FCF_SYSMENU | FCF_CLOSEBUTTON
+    PRESPARAMS PP_USER, "10.System Proportional"
+    BEGIN
+        CONTROL "",                    LB_MATCHES, 6, 22, 187, 91, WC_LISTBOX,
+                                            LS_NOADJUSTPOS | WS_GROUP |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "~OK",                 DID_OK, 5, 5, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | BS_DEFAULT |
+                                            WS_TABSTOP | WS_VISIBLE
+        CONTROL "~Cancel",             DID_CANCEL, 48, 5, 38, 12, WC_BUTTON,
+                                            BS_PUSHBUTTON | WS_TABSTOP |
+                                            WS_VISIBLE
+    END
+END
+ICON        ICO_REFRESH                        "REFRESH.ICO"
+ICON        ICO_BREAK                          "BREAK.ICO"
+ICON        ICO_CONVERT                        "Convert.ICO"
+ICON        ICO_CANCEL                         "unplug.ICO"

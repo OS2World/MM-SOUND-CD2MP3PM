@@ -1,0 +1,18 @@
+     CD2MP3 PM 1.14a
+===========================
+
+An Interface for CD and WAV
+to MP3 or Ogg Vorbis conversion.
+
+Featuring:
+  - CDDB and ID3 tag
+  - CD Drive Auto-Detect
+  - WAV file Drag and Drop
+  - Custom Encoder and CD Grabber
+    Configuration
+  - "LFN support" for DOS Encoders
+  - Super Grab
+  - Play/Stop preview for CD
+  - Statistic Information
+  - Auto deselect/removal
+

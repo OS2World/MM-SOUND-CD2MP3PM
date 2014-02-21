@@ -1,0 +1,277 @@
+Welcome to CD2MP3 1.14a!  The next step into MP3 world ... after PM123.
+=======================
+
+I always make my products very straightforward and fast to use, and I hope
+this one lives up to my expectations.  Tell me what you think.
+
+The BEST way to thank me if you like this program is to register your copy
+of PM123. ;)  Thank you.  Did you know I do this instead of working for
+paying my university expenses?  Oh, you don't know what is PM123?  point
+your Web Browser to http://sektori.com/pm123/ and
+http://www.cam.org/~guardia/pm123.html ASAP, you don't know what you're
+missing!
+
+Thanks to Aglaja Przyborski <aglaja@ibm.net> and Klaus Staedtler for the
+nice icons.
+
+
+Usage
+=====
+
+For the MP3 setup, choose your Encoder and the global bitrate (ie.: not per
+channel).  Not all the bitrates are supported for all WAV files and by all
+Encoders.  Low Priority will launch the encoder in idle priority.  (This
+doesn't work for DOS programs, and for some programs like BladeEnc, see
+Notes).  High Quality is implementation depended (see below).  Specify the
+MP3 directory where the final MP3 is to be placed, and write some last
+minute custom parameters to be placed on the Encoder's command line.
+
+For CDDB support, it is *****VERY IMPORTANT**** that you setup an e-mail
+address before attempting to do anything.  Afterwards, you can add new
+servers and the one you select will be the one used during operations,
+unless "Try all servers" is active.  "Filename format" is used when CDDB
+information was found and "Fallback filename format" is used when no
+information was found.  HTTP support is only useful when you need to access
+the web through a proxy or behind a firewall.
+
+The filename formats have the following format specifications:
+
+%t = song title
+%a = album artist
+%l = album title
+%y = year
+%c = song comment
+%g = genre
+
+%k = song track
+%C = album comment
+
+%m = length (minutes)
+%s = length (remaining seconds)
+%S = length (ALL in seconds).
+
+To Grab CD Tracks, set the Grabber.  If CD2MP3 didn't detect your CD drive
+correctly, type it in.  Set an appropriate (ie.: huge) Temporary directory
+that will hold the WAV files.  After refreshing the view, you can start
+selecting tracks.  There is a popup menu available, and the usual container
+accelerators are available (shift-f8, shift-f9, shift-f10, ctrl-/, ctrl-\,
+shift-arrows, alt-mb1, etc.). Custom is to add last minute custom parameters
+to the Grabber's command line.
+
+To convert WAV files, add WAV files by either bringing up the file dialog
+or by dragging and dropping WAV files in the listbox.  The correspondent
+key for Add is Insert and Delete for Delete.
+
+NOTE!!  If something goes terribly wrong with CDDB and you can't figure it
+out, CD2MP3 PM writes to the invisible console what comes in and out of the
+sockets.  So start CD2MP3 PM with console redirection to see what happens.
+ie.: "cd2mp3pm > log"
+
+
+Super Grab
+==========
+
+While in Super Grab mode, CD2MP3 PM gives the Encoder a priority a bit
+higher than the Grabber.  For example, if you set Low Priority, the Encoder
+is running at idle class, delta 1, and the Grabber at idle class, delta 0.
+Without Low Priority, the Encoder is running normal class, delta 1 and the
+Grabber, normal class, delta 0.
+
+This is good when you're not trying to run a DOS program, as you know the
+OS/2 APIs can't set the priority for a DOS session.  So if you intend to
+use a DOS Encoder at Low Priority, edit the cd2mp3pm.cfg and follow the
+steps below to set the priority at "i1".  If not, set it to "r1".  The same
+for a DOS Grabber, "i0" and "r0".
+
+Also note that real concurrent Encoding and Grabbing will only occur if you
+have a Bus Mastered CD-ROM drive connected and setup on a Bus Mastered
+controller.  For example, the secondary ATA controller on my motherboard is
+defective and doesn't work with Bus Mastering, and I have my CD-ROM drive
+plugged in it.
+
+
+Notes
+=====
+
+CD2MP3 doesn't always know when a session has been killed or has stopped
+normally, so to prevent CD2MP3 from continuing as nothing happened, press
+Stop instead.  If the session doesn't get killed, then try to kill it by
+yourself.  This is the case for Win32-OS/2 programs.  Don't try to close
+the window.  You will not accomplish anything by doing so.  Kill -9 doesn't
+work on them either.  There are no way to terminate such sessions at the
+moment, but fortunately, ToMPG will end on a couple of key stroke.
+
+To run DOS programs at idle priority, you will have to use Set Priority.
+(http://hobbes.nmsu.edu/pub/os2/util/system/sp103.zip)  After installing
+the utility properly, edit the Config file, set the executable to
+spdos.exe, and EncoderBefore parameter to something like "i1 l3enc.exe".
+
+Alfons DOES NOT accept a temporary directory.  It will use the current
+directory as a WAV place holder.  THIS IS NOT A BUG IN CD2MP3.  It's even a
+feature, else Alfons wouldn't work at all.
+
+Also note that BladeEnc sets its own priority, so CD2MP3 PM has _no_
+control over it.  Use its command line options to see which one makes it
+operate like it should.
+
+
+Known Bugs
+==========
+
+- Deleting the last record while in shift-f8 mode traps in PMCTLS.DLL.
+  This is an OS/2 bug.  Hell, it even happens in the WPS, but it can
+  recover due to great recovery mechanism.
+
+- GrabberAcceptsOutput = FALSE screws the wav->mp3 function.  Erase the
+  temporary directory entry field when using such a Grabber.
+
+- Same thing for Encoders and ID3 Tag function...
+
+- HTTP/Proxy Authentification doesn't work.  Anybody need this?
+
+- Proxy support untested.  Please test it.  If the code works at all, it
+  only works on HTTP/1.1 proxies.  HTTP/1.0 proxies are not very useful in
+  any case. .. ??
+
+
+Config Files
+============
+
+The config file cd2mp3pm.cfg permits to add custom CD Grabber and MP3
+Encoder programs support into CD2MP3.   Read the comments in the file for
+more information.
+
+
+Grabbers/Encoders Notes
+=======================
+
+I included Leech, Alfons and JCread2, because I don't know of any other, do
+you?
+
+Although, today I find LAME is the best encoder, I do not have time to
+update others.txt.
+
+I included ToMPG, L3Enc and BladeEnc because I these were the best
+encoders when I had time to play with others.txt.  ToMPG is more than 9
+times faster than L3Enc, and I can hear little difference when encoding
+CD quality WAVs at 128kb/s. Use it when you're in a hurry.  L3Enc 2.x
+just gives the best quality at 128kb/s. It's downsampling is magnificent
+and it even supports MPEG 2.5. With new "LFN support" for DOS encoders,
+you can now finally use L3Enc 2.x for DOS in all the comfort of long
+filenames as CD2MP3 PM will do the dirty renaming work. And finally, the
+author of BladeEnc assures his encoder gives best quality at and over
+160kb/s (seems to be the case).
+
+If you want to know more about my encoder choices, or where to find them,
+read others.txt.
+
+
+History
+=======
+
+1.14 - May 3, 2001
+----
+
+- Added default configuration for GOGO and LAME encoders.
+- Changed default cddb server to freecddb.org.  cddb.com does not work anymore.
+- EncoderBefore didn't work
+- Problems with multiple match crashing CD2MP3 PM now solved.
+
+1.13 - October 4, 1999
+----
+
+- CDDB server requires 8 char long ID.  Some CDs ID are now correctly
+  prefixed with zeros.
+- Multiple exact match now works.
+
+1.12 - January 30, 1999
+----
+- Modified readcd to be CTCDROM.DMD compatible (This CD drive manager of
+  Unite CD Maker doesn't want to read in the CODE segment, so I had to
+  define local variables for the parameter)
+- Was able to properly make the notebook context menu, thanks to
+  Eric Norman <warped@cs.montana.edu>
+
+1.11
+----
+- Fixed problems on CD drive opening failure.
+- Made various entry fields bigger.
+- Now does automatic translation of invalid filename characters.
+- Fixed keyboard mnemonic in the main dialog.
+- Added a few mini-icons.  It seems the PM doesn't draw mnemonic underlines
+  anymore, but they are still there (R for Refresh, C for Convert, S for
+  Stop and A for Cancel)
+- Fixed some socket failure report problem.
+- Added more ID3 Tag Genres.
+
+1.10
+----
+
+- Added CDDB support as well as ID3 tag support!
+- Added the ability to edit container fields.
+- Added mnemonics to static text... thanks to
+  Stefan Ruck <100664.1353@compuserve.com> for the trick in EDM/2!
+- Kludged Win32-OS/2 return code better.  It should now never care about
+  what garbage it may return.
+- Updated CFG file for new encoders and grabbers.
+- Fixed crash when auto-removing records from the WAV container.
+- Added "LFN support" for DOS programs through smart renaming.
+
+- Sorry Aglaja Przyborski, didn't have the time to add the new icons.
+
+1.01
+----
+
+- DOH!!  pointers did it again... basename wasn't functional
+- remove & deselect wasn't save and reloaded to its previous state
+
+1.0
+---
+
+- Lots of things
+
+0.91
+----
+
+- numbering will go like 01,02,03 ... instead of 1,2,3.  Someone pointed
+  out only the former sorts properly after 9.
+- new GrabberNoDrive option for program such as READCDA
+- new EncoderAcceptsOutput for program such as BladeEnc
+
+0.90
+----
+
+- Initial release
+
+
+Legal stuff
+===========
+
+This free software (a la GNU) product is used at your own risk, although it
+is highly improbable it can cause any damage.
+
+The code is MINE, all MINE MINE MINE.  I don't wanna see people starting to
+use this code as if it were public domain.  Always re-distribute the
+package in its entirety and don't charge anything from it.
+
+If you plan on using the code or copying me, please give me the credits,
+thanks.  However, any commercial or profitable use of either the product or
+the source code will require a special permission directly from the author.
+
+
+Contacting the Author
+=====================
+If you have any suggestions, comments or bug reports, please let me know.
+
+Samuel Audet
+
+E-mail:      guardia@cam.org
+Homepage:    http://www.cam.org/~guardia/
+IRC nick:    _Guardian (be sure it's me before starting asking questions though)
+
+Snail Mail:
+
+   377, rue D'Argenteuil
+   Laval, Quebec
+   H7N 1P7   CANADA
+

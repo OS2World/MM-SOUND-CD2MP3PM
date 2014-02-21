@@ -1,0 +1,137 @@
+HTTP-Version = HTTP/1.1
+
+HTTP-date    = Sun, 06 Nov 1994 08:49:37 GMT  ; RFC 822, updated by RFC 1123
+               Sunday, 06-Nov-94 08:49:37 GMT ; RFC 850, obsoleted by RFC 1036
+               Sun Nov  6 08:49:37 1994       ; ANSI C's asctime() format
+
+must be able to decode "chunked" transfer coding
+
+EOL can be either CR, LF or CRLF
+
+default parameter for text/ is ISO-8859-1
+
+get back on 3.7.2 Multipart Types
+
+User-Agent: CD2MP3PM/1.02Alpha
+
+empty line represents the start of the message body (after the header).
+before header, there is start-line
+
+fields with the same field-name have their values put into one field-value,
+BUT seperated by commas
+
+I must notify the user that I received a bad Content-Length
+
+Request       = Request-Line              ; Section 5.1
+                *( general-header         ; Section 4.5
+                 | request-header         ; Section 5.3
+                 | entity-header )        ; Section 7.1
+                CRLF
+                [ message-body ]          ; Section 7.2
+
+Request-Line   = Method SP Request-URI SP HTTP-Version CRLF
+
+Method         = "OPTIONS"                ; Section 9.2
+               | "GET"                    ; Section 9.3
+               | "HEAD"                   ; Section 9.4
+               | "POST"                   ; Section 9.5
+               | "PUT"                    ; Section 9.6
+               | "DELETE"                 ; Section 9.7
+               | "TRACE"                  ; Section 9.8
+               | extension-method
+
+extension-method = token
+
+Request-URI    = "*" | absoluteURI | abs_path
+
+for submitting to proxies, request line must be
+GET http://www.w3.org/pub/WWW/TheProject.html HTTP/1.1
+and this can use any of the Method up there
+
+abs_path are for use when not contacting to a proxy, and if no abs_path, it
+must be "/".  Also, we must fill Host: with the host name (ex.:
+www.ibm.com:80)
+
+
+general-header = Cache-Control            ; Section 14.9
+               | Connection               ; Section 14.10
+               | Date                     ; Section 14.19
+               | Pragma                   ; Section 14.32
+               | Transfer-Encoding        ; Section 14.40
+               | Upgrade                  ; Section 14.41
+               | Via                      ; Section 14.44
+
+request-header = Accept                   ; Section 14.1
+               | Accept-Charset           ; Section 14.2
+               | Accept-Encoding          ; Section 14.3
+               | Accept-Language          ; Section 14.4
+               | Authorization            ; Section 14.8
+               | From                     ; Section 14.22
+               | Host                     ; Section 14.23
+               | If-Modified-Since        ; Section 14.24
+               | If-Match                 ; Section 14.25
+               | If-None-Match            ; Section 14.26
+               | If-Range                 ; Section 14.27
+               | If-Unmodified-Since      ; Section 14.28
+               | Max-Forwards             ; Section 14.31
+               | Proxy-Authorization      ; Section 14.34
+               | Range                    ; Section 14.36
+               | Referer                  ; Section 14.37
+               | User-Agent               ; Section 14.42
+
+
+
+
+Response      = Status-Line               ; Section 6.1
+                *( general-header         ; Section 4.5
+                 | response-header        ; Section 6.2
+                 | entity-header )        ; Section 7.1
+                CRLF
+                [ message-body ]          ; Section 7.2
+
+Status-Line = HTTP-Version SP Status-Code SP Reason-Phrase CRLF
+
+response-header = Age                     ; Section 14.6
+                | Location                ; Section 14.30
+                | Proxy-Authenticate      ; Section 14.33
+                | Public                  ; Section 14.35
+                | Retry-After             ; Section 14.38
+                | Server                  ; Section 14.39
+                | Vary                    ; Section 14.43
+                | Warning                 ; Section 14.45
+                | WWW-Authenticate        ; Section 14.46
+
+
+
+
+entity-header  = Allow                    ; Section 14.7
+               | Content-Base             ; Section 14.11
+               | Content-Encoding         ; Section 14.12
+               | Content-Language         ; Section 14.13
+               | Content-Length           ; Section 14.14
+               | Content-Location         ; Section 14.15
+               | Content-MD5              ; Section 14.16
+               | Content-Range            ; Section 14.17
+               | Content-Type             ; Section 14.18
+               | ETag                     ; Section 14.20
+               | Expires                  ; Section 14.21
+               | Last-Modified            ; Section 14.29
+               | extension-header
+
+extension-header = message-header
+
+
+if content-type unknown, use "application/octet-stream"
+
+wut about persistent connections!??!  section 19.7.1
+
+using multiple request, the server sends them back in order, oooh yeaah...
+
+date: is optional for clients, recommended date format is RFC1123, section
+3.3
+
+from: field is the user e-mail and we need his approval
+
+see RFC1522 for ISO text encoding
+
+testing CDDB in HTTP http://www.cddb.com/~cddb/cddb.cgi?cmd=cddb+query+a00bea0c+12+150+20565+38223+56043+77038+95763+116543+134015+152300+170283+189548+207998+3050&hello=guardia+cam.org+CD2MP3PM+1.02Alpha&proto=1

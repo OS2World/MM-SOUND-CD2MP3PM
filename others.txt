@@ -1,0 +1,298 @@
+Here are other recommended tools for MP3 in OS/2 I tried before releasing
+this version of pm123 or cd2mp3pm.
+
+MP3 Encoders
+============
+
+I have tried six MP3 encoders by encoding CD quality WAVs (yes, even
+Classical Music) in MP3s at 128kb/s in stereo or joint-stereo depending on
+the encoder's performance and tested them with some $45 headphones and
+pm123's spectrum analyzer and equalizer.  I have benchmarked the speed of
+the different encoders by encoding Track #8 of DNAý Sound Track (a fairly
+complex 8.8 megs WAV) on a P150.  I have tested the encoding quality of the
+encoders with Track #12, a complex song using high frequencies, which some
+encoders distort very audibly at 128kb/s.
+
+
+ToMPG 3.0 for Win32 (http://www.kiss.uni-lj.si/~k4fe0470/tompg.zip)
+-------------------
+
+This is a Win32 console EXE, but it converts NUMBER ONE with Win32-OS/2
+Alpha 0.02!! (http://www.os2ss.com/win32-os2)
+
+ToMPG is fast.  I mean astoundingly fast, light speed fast. WARNING!! it's
+going to blow your socks off!!  It's almost six times faster (no joke) than
+L3Enc 1.0 for OS/2 here.
+
+Use the following options to enable 128kb/s and Stereo output though.  The
+Joint-Stereo algorithm of ToMPEG is not good. -B64 -M0
+
+The hearing test was good.  I didn't hear a difference between the original
+WAV and the MP3, but the spectrum analyzer showed a cut off at around
+16kHz.
+
+Its downsampling filtering is BS though, so if you plan on encoding low
+quality MP3 from high quality WAV, use something else, or downsample it
+before using ToMPG.
+
+ToMPG also supports MPEG 2 Layer III (lower sampling rate MP3s).
+
+This program presumably looks free.  I see it on many unofficial sites,
+that means excluding Xing's, and it never comes with any license or
+shareware restrictions.  It seems to be the predecessor of the commercial
+Win32 Xing encoder (http://www.xingtech.com) which doesn't work with
+Win32-OS/2.
+
+Speed with -M0 -B64: 29 seconds
+
+
+L3Enc 2.72 for DOS  (ftp://ftp.cdrom.com/pub/sac/sound/l3v272d1.zip)
+------------------
+
+This one is about 2 times slower than L3Enc for OS/2 without -hq.  With it,
+you're better off running it over night, but I haven't figured out what it
+actually does (is it just eating CPU cycles for the fun of it or what?).
+Sadly, this is the last (and obsolete) official version.  It doesn't even
+appear on Fraunhoffer site!!
+
+It encodes only in Joint Stereo, but the hearing test was EXCELLENT and the
+spectrum analyzer shows a cut off at 20kHz.  So if you are sensitive to
+high frequencies, use this encoder.
+
+EXTRA EXTRA!!  L3Enc 2.00 can encode in Stereo and Dual Channel if wanted.
+I have the archive if it interests anyone.
+
+Note, since this is a DOS program, it only supports 8.3 style filenames.
+
+L3Enc 2.72 for DOS supports MPEG 2 Layer III (lower sampling rate MP3s).
+
+It requires a registration for encoding over 112kb/s.
+
+Speed: 4:04 mins
+
+
+8hz's MP3 Encoder 0.2 (http://www.8hz.com)
+---------------------
+
+This is a free MP3 encoder based on the public ISO MPEG code (the famous
+dist10.tar.gz).  Eventhough it is at least 2 times slower than L3Enc 1.0
+for OS/2, the source codes are available for free!!  It is beta at the
+moment, it might not always work properly.
+
+The hearing test was ok.  The song was distorted all the way, but I didn't
+hear a big difference between the original WAV and the MP3 other than very
+audible distortions in a few specific places. It also attenuates any
+frequency over 16kHz upto at leat 20kHz.
+
+8Hz-mp3 0.2 does not support MPEG 2 Layer III (lower sampling rate MP3s).
+
+Note that this encoder is not longer available for download.
+
+Speed: 4:48 mins
+
+
+BladeEnc 0.76 for OS/2 (http://home8.swipnet.se/~w-82625)
+----------------------
+
+This encoder quality resembles 8hz-mp3 since it is based on the same code.
+Gives the same kind of distortions at 128kb/s.
+
+For CD quality samples, the author says BladeEnc is good to encoder at and
+over 160kb/s only, and I have verified this.  He also assures that L3Enc
+does not add much over 128 kb/s.  This however, I cannot testify.
+
+BladeEnc is free.
+
+Speed: 4:10 mins
+
+
+Plugger+ 0.4 (http://members.tripod.com/~mp3nkoder)
+------------
+
+This one can also be converted using Win32-OS/2.  It is another encoder
+based on the ISO source code.
+
+It gives similar but better quality as the two previous ones at 128kb/s.
+While still distorting the whole song, the small very audible glitch were
+not present. Also, it kept all frequencies non-attenuated, at least up to
+20kHz.
+
+Plugger+ is also free.
+
+Speed: 2:00 mins
+
+
+L3Enc 1.0 for OS/2  (http://hobbes.nmsu.edu/pub/os2/apps/mmedia/sound/convert/l3en4os2.zip)
+------------------
+
+This is actually the well known L3Enc from Fraunhofer-IIS version 1.0.  It
+looks like they used EMX to compile this version of L3Enc for DOS, and it
+had the side effect to make it also run in OS/2.  Somebody, somewhere, had
+that old copy and made it reappear in public.  The new versions of L3Enc
+now use DJGPP and that doesn't make any OS/2 binaries.  Send shit to
+Fraunhofer-IIS!!
+
+It's reasonably fast, but it hogs the CPU. You should get SPE
+(http://hobbes.nmsu.edu/pub/os2/util/system/spe.zip) to reduce its priority
+to idle 0 if you want to do something else when it's encoding.
+
+It encodes in Joint Stereo only and the hearing test was bad.  It cuts any
+any frequencies over 14kHz.  uueeew... worse than FM radio.
+
+The -wav parameter doesn't work properly, so you need to feed it RAW files
+or you'll hear a pop at the beginning of your MP3s.
+
+L3Enc 1.0 for OS/2 does not support MPEG 2 Layer III (lower sampling rate MP3s).
+
+Speed: 2:28 mins
+
+
+MP3Enc 3.1 for Win32 (http://www.iis.fhg.de/amm/download/mp3enc/)
+--------------------
+
+This is a new face of L3Enc.  A Win32 EXE is available, but no DOS EXE.
+It also converts fine with Win32-OS/2.  Nonetheless, I was very disapointed
+by its performance.
+
+By default, it cuts off all frequencies over 11kHz. (Remember what AM radio
+sounds like?) This makes the sound very muffled.  So I tried to use -bw
+22050 (to set the frequency bandwidth we want), but it still only goes up
+to 16kHz.  The resulting MP3s using that parameter contains major "drop
+outs" and chops in sound not found in the original WAV.
+
+The highest quality (which is the default) doesn't seem to make things any
+better (just like L3Enc -hq) while making the encoding process very very
+very slow. In addition, we can only use Joint Stereo.
+
+This encoder has some nice features like allowing pipes to be used instead
+of files (this can be useful for realtime encoding and transfer), and some
+other not so nice features like -l3wav which deliberately sticks a RIFF wav
+header at the beginning the MP3 file.
+
+I don't know what happened in Fraunhofer labs, maybe a visit from
+Microsoft?
+
+You should get SP to reduce its priority as it hogs the CPU.
+(http://hobbes.nmsu.edu/pub/os2/util/system/sp103.zip)
+
+MP3Enc 3.1 for Win32 supports MPEG 2 Layer III (lower sampling rate MP3s).
+
+This requires a registration for more than 30 seconds of MP3 encoding.
+
+Speed with -qual 0: 2:12 mins
+
+
+os2enc01.zip
+------------
+
+I didn't get it to work at all.  Gives garbage.
+
+
+AMPEG 4.3 (http://hobbes.nmsu.edu/pub/os2/apps/mmedia/sound/convert/ampeg43.zip)
+---------
+
+Good free package with source codes available to encode mp2 files, but they
+need to be a bit larger (192kb/s instead of 128kb/s) than mp3 to achieve
+the same quality.  I can hear the difference with my headphones.
+
+
+Conclusion
+----------
+
+- Speed and good quality   -> ToMPG 3.0
+- Low sampling frequencies -> L3Enc 2.72 for DOS
+- Absolute highest quality -> L3Enc 2.72 for DOS for 128kb/s and lower
+                           -> BladeEnc 0.76 for over 128kb/s
+
+Decoders
+========
+
+mpg123 for OS/2 0.20 (http://www.cam.org/~guardia/archives/mpg123_020.zip)
+--------------------
+
+This is my port of mpg123 (which I used to make mpg123.dll).  I included a
+WAV routine to output files with a RIFF WAVE header.  So basically,
+anything that pm123 or mpg123 can play can be dumped to WAV files that can
+then be used for editing, CD burning or reencoding.
+
+
+CD-DA utilities
+===============
+
+Leech 1.20 (http://hobbes.nmsu.edu/pub/os2/apps/mmedia/cd/grabber/leech120.zip)
+----------
+
+This is a CD grabber with dijittering capabilities. There is a very good
+reason that you want to prevent any jittering.  Not only does it insert
+clicks in your PCM sample, it can also switch the left and right channel!!
+
+With my old Goldstar CD-ROM drive, I got loads of "jitter correction
+failed" even though Alfons, for example, has no problem reading it.  Must
+be that it didn't like to jump all over the place to correct jittering.  My
+new Panasonic CD-ROM drive does 0 jitter all the way, now that's neat.
+Anyway, if your CD-ROM drive hates CD-DA, try to use -s10 and -j100.  It
+might be slow, but at least you get everything.
+
+Make sure you use the options to dump the audio track into a RAW file if
+you intend to encode it with L3Enc 1.0.  If you don't do so, L3Enc 1.0 will
+encode the WAV header (it doesn't recognize it), and you will get a click
+at the beginning of your MP3 files.
+
+Alfons 0.99b (http://www.algonet.se/~mikkje/files/alf099b.zip)
+------------
+
+This is the best CD-DA utility after Leech.  It's very easy to use, and
+because Leech can take quite a while reading a track, I use Alfons for
+"quick and dirty" grabs.
+
+JCDread2 0.1 (ftp://hobbes.nmsu.edu/pub/os2/apps/mmedia/cd/grabber/jcdread2.zip)
+------------
+
+Does deJittering same as Leech.  Works fine, nothing else to add.
+
+
+Front Ends
+==========
+
+MP3 PM 0.60b (http://www.kiss.uni-lj.si/~k4fe0470/mp3pm060b.zip)
+------------
+
+Looks like a promising control interface, but it's not there yet.  Version
+0.60b constantly keeps engaging in an eternal loop in the PM queue. :(  I
+could swear the previous version actually worked though.  Also, there is no
+support for custom grabbers/encoders.  It supports L3Enc 1.0, ToMPG 3.0,
+MP3 Enc 3.0, New Terra Encoder (aka AMPEG 4.3) and Leech.  Also has an ID3
+tag editor for existing MP3s.
+
+
+PMConverter 0.04b (http://hobbes.nmsu.edu/pub/os2/apps/mmedia/cd/grabber/pmconv003.zip)
+-----------------
+
+PMConverter supports CDDB.  It allows, if it finds your CD titles in the
+CDDB database (http://www.cddb.org), you not to worry about renaming and
+manually setting all the ID3 tags yourself.  It supports any Encoder and
+Grabber through REXX support, has a Play/Stop preview of CD tracks, and
+supports manual editing of track titles.  Works OK otherwize.
+
+
+CD2MP3 PM 1.13 (http://www.cam.org/~guardia/archives/cd2mp3pm113.zip)
+--------------
+
+This is a very nice (ah, I can't help being biased) utility that I also
+programmed that can use any Encoder and Grabber that can run in
+non-interactive mode using a simple configuration file.  Supports such
+things as CDDB, ID3 tag, Super Grab, CD Drive Auto-Detect, WAV file Drag
+and Drop, Play/Stop preview for CD, Statistic Information and Auto
+deselecting of tracks and removal of WAV files from the list after
+successfull encoding. It reportably works very well, try it out!
+
+CD to MP3 0.3b (http://wwwcip.rus.uni-stuttgart.de/~inf25019/cd2mp3pm/cd2mp3b3.zip)
+--------------
+
+A basic interface supporting ID3 tags, REXX scripts as CD Grabbing and
+Encoding interface, statistic information, and Play/Stop CD Preview.  No I
+didn't copy on its name, I didn't know it existed when I released CD2MP3.
+Works fine!
+
+--
+Samuel Audet <guardia@cam.org>
